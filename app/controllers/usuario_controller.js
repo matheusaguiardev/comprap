@@ -22,7 +22,7 @@ module.exports.buscarUsuarioById = function(db, res){
     });
 }
 
-module.exports.buscarUsuarioPeloGrupo = function(db, grupo,res){
+module.exports.buscarUsuarioPeloGrupo = function(db, grupo, res){
     model.buscarPeloGrupo(db, grupo, function(result){
         if(!result.error){
             res.status(200).send(result);

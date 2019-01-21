@@ -14,7 +14,7 @@ module.exports = function(app, db){
 
     app.get('usuario/:grupo', (req, res) => {
         const grupo = req.params.grupo;
-        
+        constroller.buscarUsuarioPeloGrupo(db, grupo, res);
     });
 
     app.delete('/usuario/:id', (req, res) => {
