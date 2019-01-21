@@ -33,6 +33,22 @@ module.exports.buscarById = function (db, id, callback){
     });
 };
 
+module.exports.buscarPeloGrupo = function(db, grupo, callback){
+    db(function(conn){
+        console.log("Buscar grupo");
+        
+        conn.collection('usuario').find({"grupos": grupo }).toArray(function(err, result) {
+            if (err) {
+                console.log("Falha ao executar" + err);
+                callback({'error':'usuario não encontrado'});
+            } else {
+                callback(result);
+            }
+        });
+        conn.close();
+    });
+};
+
 module.exports.atualizarUsuario = function(db, id, usuario, callback){
     db(function(conn){
         console.log("Atualizar usuario");

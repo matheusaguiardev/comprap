@@ -7,9 +7,14 @@ module.exports = function(app, db){
         controller.salvarUsuario(db, req.body, res);       
     });
 
-    app.get('/usuario/:id', (req, id, res) => {
+    app.get('/usuario/:id', (req, res) => {
         const id = req.params.id; // pegando o parametro id
         controller.buscarUsuarioById(db, id, res);
+    });
+
+    app.get('usuario/:grupo', (req, res) => {
+        const grupo = req.params.grupo;
+        
     });
 
     app.delete('/usuario/:id', (req, res) => {
