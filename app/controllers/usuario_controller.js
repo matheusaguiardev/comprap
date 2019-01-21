@@ -12,8 +12,8 @@ module.exports.salvarUsuario = function(db, usuario, res){
     });
 }
 
-module.exports.buscarUsuario = function(db, res){
-    model.buscarUsuario(db, function(result){
+module.exports.buscarUsuarioById = function(db, res){
+    model.buscarById(db, function(result){
         if(!result.error){
             res.status(200).send(result);
         } else {
@@ -22,12 +22,22 @@ module.exports.buscarUsuario = function(db, res){
     });
 }
 
-module.exports.atualizarUsuario = function(db, usuario, res){
-    model.atualizarUsuario(db, usuario, function(result){
+module.exports.atualizarUsuario = function(db, id, usuario, res){
+    model.atualizarUsuario(db, id, usuario, function(result){
         if(!result.error){
             res.status(200).send(result);
         } else {
-            res.status(404).send();
+            res.status(400).send(result);
+        }
+    });
+}
+
+module.exports.deletarUsuario = function(db, id, res){
+    model.deletarById(db, id, function(result){
+        if(!result.error){
+            res.status(200).send(result);
+        } else {
+            res.status(400).send(result);
         }
     });
 }

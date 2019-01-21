@@ -48,3 +48,19 @@ module.exports.atualizarUsuario = function(db, id, usuario, callback){
         conn.close();
     });
 };
+
+module.exports.deletarById = function(db, id, callback){
+    db(function(conn){
+        console.log("Deletar usuario");
+        const details = { '_id': new ObjectID(id) };
+        conn.collection('usuario').remove(details, (err, item) => {
+            if (err) {
+                console.log("Falha ao executar" + err);
+                callback({'error':'Não foi possível deletar esse usuario'});
+            } else {
+                callback({'resposta':'Usuario ' + item + ' foi deletado!'});
+            } 
+        });
+        conn.close();
+    });
+};
