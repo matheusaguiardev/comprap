@@ -1,15 +1,19 @@
 "use strict";
 
+const mongoose = require('mongoose');
 const dbUrl = require('./db');
-const mongoClient = require('mongodb').MongoClient;
 
-module.exports = function (callback) {
-    mongoClient.connect(dbUrl.url, (err, database) => {
-        if(err) return console.log(err);
+mongoose.connect(dbUrl);
 
+
+module.exports = function(callback){
+
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
         console.log("Conexão com banco de dados aberta com sucesso!");
         callback(database);
-
-        //console.log(database);
     });
+
+
 }
