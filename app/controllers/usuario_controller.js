@@ -12,12 +12,12 @@ module.exports.salvarUsuario = function(db, usuario, res){
     });
 }
 
-module.exports.buscarUsuarioById = function(db, res){
-    model.buscarById(db, function(result){
+module.exports.buscarUsuarioById = function(db, id, res){
+    model.buscarById(db, id, function(result){
         if(!result.error){
             res.status(200).send(result);
         } else {
-            res.status(404).send();
+            res.status(404).send(result);
         }
     });
 }
@@ -27,7 +27,7 @@ module.exports.buscarUsuarioPeloGrupo = function(db, grupo, res){
         if(!result.error){
             res.status(200).send(result);
         } else {
-            res.status(404).send();
+            res.status(404).send(result);
         }
     });
 }

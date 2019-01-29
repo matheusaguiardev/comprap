@@ -8,13 +8,13 @@ module.exports = function(app, db){
     });
 
     app.get('/usuario/:id', (req, res) => {
-        const id = req.params.id; // pegando o parametro id
+        const id = req.params.id;
         controller.buscarUsuarioById(db, id, res);
     });
 
-    app.get('usuario/:grupo', (req, res) => {
+    app.get('/usuarios/grupo/:grupo', (req, res) => {
         const grupo = req.params.grupo;
-        constroller.buscarUsuarioPeloGrupo(db, grupo, res);
+        controller.buscarUsuarioPeloGrupo(db, grupo, res);
     });
 
     app.delete('/usuario/:id', (req, res) => {

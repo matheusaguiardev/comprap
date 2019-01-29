@@ -3,7 +3,13 @@
 const mongoose = require('mongoose');
 const dbUrl = require('./db');
 
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl.url, { useNewUrlParser: true })
+    .then(function(){
+        console.log("MongoBD connected");
+    })
+    .catch(function(err){
+        console.log("Algum erro ocorreu: "+ err);
+    });
 
 
 module.exports = function(callback){
